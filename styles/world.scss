@@ -1,0 +1,221 @@
+@use '../shared/typography';
+@use '../tokens/scss/layout';
+@use '../shared/optical';
+@use '../shared/navigation';
+
+@layer world {
+  .frame__footer { background: var(--color-tint); }
+}
+
+@layer world {
+  .publication-body > h2 { padding-block-start: var(--space-5); }
+  .studio-availability { max-inline-size: var(--layout-measure); margin-block: var(--space-7); margin-inline-start: auto; }
+  .studio-availability p { font-size: var(--type-size-body); color: var(--color-muted); }
+  .page-opening > .studio-availability,.directory-context > .studio-availability { margin: 0; }
+  .closing-question { max-inline-size: var(--layout-measure); margin: var(--space-8) auto var(--space-5); padding-block: var(--space-7) 0; }
+  .closing-question p { margin: 0; @include typography.display-face(); font-size: var(--type-size-h2); line-height: var(--type-line-height-heading); }
+  @media (width < layout.$layout-breakpoint-navigation) {
+    .studio-availability { margin-block: var(--space-5); }
+    .closing-question { margin-block: var(--space-5); }
+  }
+}
+
+@layer world {
+  main:has(.product-directory) { max-inline-size: var(--layout-field-max); }
+  .publication-layout:has(.product-directory) { display: block; }
+  .publication-body:has(.product-directory) { max-inline-size: none; }
+  .publication-body:has(.product-directory) > .studio-availability { max-inline-size: none; margin-inline: 0; margin-block: var(--space-5) var(--space-7); }
+  .product-directory { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: var(--layout-column-gap); margin-block: var(--space-7); align-items: start; }
+  .product-entry { padding: var(--space-6); background: var(--color-sheet); @include optical.frame($depth: inset 0 0 0 var(--world-geometry-plate-edge-size) var(--color-paper)); }
+  .product-entry > h2 { margin: 0 0 var(--space-5); font-size: var(--type-size-display-2); line-height: var(--type-line-height-heading); }
+  .product-entry > p { margin: 0; }
+  .product-entry > p + p { margin-block-start: var(--space-5); }
+  .product-entry a:focus-visible { background: var(--color-tint); }
+  @media (width < layout.$layout-breakpoint-wide) {
+    .product-directory { grid-template-columns: minmax(0,1fr); }
+    .product-entry { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,2fr); gap: var(--space-4) var(--layout-column-gap); }
+    .product-entry > h2 { grid-row: 1 / 3; margin: 0; }
+    .product-entry > p { grid-column: 2; }
+    .product-entry > p + p { margin-block-start: 0; }
+  }
+  @media (width < layout.$layout-breakpoint-navigation) {
+    .product-directory { margin-block: var(--space-6); }
+    .product-entry { display: block; padding: var(--space-5); }
+    .product-entry > h2 { font-size: var(--type-size-h2); margin-block-end: var(--space-4); }
+    .product-entry > p + p { margin-block-start: var(--space-4); }
+  }
+  .product-reading { max-inline-size: var(--layout-measure); margin: var(--space-8) auto; }
+  .dependency-study { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 0 var(--layout-column-gap); margin-block: var(--space-8); }
+  .dependency-study > h2 { grid-column: 1 / -1; max-inline-size: var(--layout-measure); font-size: var(--type-size-display-2); line-height: var(--type-line-height-heading); margin: 0 0 var(--space-5); }
+  .dependency-study > p { grid-column: 1 / -1; max-inline-size: var(--layout-measure); margin: 0 0 var(--space-7); }
+  .study-conclusion { grid-column: 1 / -1; max-inline-size: var(--layout-measure); margin: var(--space-7) auto 0; }
+  .study-conclusion > p { margin: 0; }
+  .study-step { display: grid; grid-row: span 6; grid-template-rows: subgrid; background: var(--color-sheet); @include optical.frame($depth: var(--world-depth-offset) var(--world-depth-offset) 0 var(--color-tint)); }
+  .study-step > h3 { border-start-start-radius: inherit; border-start-end-radius: inherit; margin: 0; padding: var(--space-5); background: var(--color-metal); color: var(--color-on-metal); font-size: var(--type-size-h3); line-height: var(--type-line-height-heading); }
+  .study-contribution:last-child { border-end-start-radius: inherit; border-end-end-radius: inherit; }
+  .study-contribution { padding: var(--space-4) var(--space-5); border-block-end: var(--stroke-hair) solid var(--color-line); }
+  .study-contribution h4 { margin: 0 0 var(--space-2); @include typography.reading-face($weight: var(--type-weight-system)); font-size: var(--type-size-meta); line-height: var(--type-line-height-system); color: var(--color-muted); }
+  .study-contribution p { margin: 0; font-size: var(--type-size-reading); line-height: var(--type-line-height-reading); }
+  .study-contribution--new { background: var(--color-tint); border-inline-start: var(--stroke-lit-edge) solid var(--color-strong-line); }
+  .study-contribution--pending { border-inline-start: var(--stroke-lit-edge) dashed var(--color-strong-line); }
+  .study-contribution--dependent { border-inline-start: var(--stroke-lit-edge) solid var(--color-strong-line); }
+  .study-contribution--outside { background: var(--color-paper); border-block-end: 0; }
+  .study-contribution--outside p { font-size: var(--type-size-body); }
+  .composition-model { margin: var(--space-7) 0 var(--space-8); display: grid; grid-template-columns: repeat(var(--layout-columns),minmax(0,1fr)); gap: var(--layout-column-gap); align-items: center; }
+  .composition-model h2,.composition-model h3,.composition-model h4 { margin: 0 0 var(--space-3); font-size: var(--type-size-h3); line-height: var(--type-line-height-heading); }
+  .composition-model p { margin: 0; }
+  .composition-model ul { margin: 0; padding-inline-start: var(--space-5); }
+  .composition-context { grid-column: 1 / 4; border-inline-end: var(--stroke-hair) dashed var(--color-strong-line); padding: var(--space-5) var(--space-5) var(--space-5) 0; }
+  .composition-context :is(h2,h3) { font-size: var(--type-size-reading); }
+  .composition-level--application { grid-column: 4 / -1; background: var(--color-metal); color: var(--color-on-metal); padding: var(--space-6); @include optical.frame($depth: var(--world-depth-offset) var(--world-depth-offset) 0 var(--color-tint)); }
+  .composition-level--playbook { display: grid; grid-template-columns: 3fr 2fr; gap: var(--space-5); margin-block-start: var(--space-5); padding: var(--space-5); background: var(--color-paper); color: var(--color-ink); @include optical.frame; }
+  .composition-level--playbook > h3 { grid-column: 1 / -1; margin: 0; }
+  .composition-level--playbook > p { grid-column: 2; align-self: center; }
+  .composition-level--agent { grid-column: 1; grid-row: 2; padding: var(--space-5); background: var(--color-sheet); @include optical.frame; }
+  .composition-model > p { grid-column: 4 / -1; font-size: var(--type-size-body); color: var(--color-muted); }
+  @media (width < layout.$layout-breakpoint-navigation) {
+    .dependency-study { display: block; margin-block: var(--space-7); }
+    .dependency-study > h2 { font-size: var(--type-size-h2); }
+    .study-step { display: block; margin-block-end: var(--space-7); }
+    .study-step > h3 { font-size: var(--type-size-reading); padding: var(--space-4); }
+    .study-contribution { display: grid; grid-template-columns: 2fr 3fr; gap: var(--space-3); padding: var(--space-4); }
+    .study-contribution h4 { margin: 0; align-self: center; }
+    .study-contribution p { font-size: var(--type-size-body); }
+    .composition-model { display: block; }
+    .composition-context { border-inline-end: 0; border-block-end: var(--stroke-hair) dashed var(--color-strong-line); margin-block-end: var(--space-5); padding: 0 0 var(--space-5); }
+    .composition-context ul { display: grid; gap: var(--space-2); padding: 0; list-style: none; }
+    .composition-context li + li { margin-block-start: 0; }
+    .composition-level--application { padding: var(--space-5); }
+    .composition-level--playbook { display: block; padding: var(--space-4); }
+    .composition-level--agent { padding: var(--space-4); margin-block: var(--space-4); }
+    .composition-model > p { margin-block-start: var(--space-5); }
+    .product-reading { margin-block: var(--space-7); }
+  }
+
+}
+
+// Shared navigation anatomy; the scene supplies only its contextual material.
+@layer world {
+  .frame__header {
+    --navigation-ink: var(--color-ink);
+    --navigation-paper: var(--color-paper);
+    --navigation-focus: var(--color-focus);
+  }
+  @include navigation.capsule($ink: var(--navigation-ink), $paper: var(--navigation-paper), $focus: var(--navigation-focus));
+}
+
+
+@layer world {
+  .control--primary,.control--navigation,.primary-action a {
+    --control-primary-border: 0;
+    --control-primary-duration: var(--motion-primary-action-duration);
+    --control-primary-hover-transform: translateY(var(--motion-primary-action-lift));
+  }
+}
+
+
+@layer world {
+  .page-opening > .studio-availability p { font-weight: var(--type-weight-display); color: var(--color-ink); }
+  .product-reading > h2 { font-size: var(--type-size-h2); line-height: var(--type-line-height-heading); }
+  .product-perspective { min-inline-size: 0; padding: var(--space-5); background: var(--color-sheet); @include optical.frame; }
+  .product-perspective > h3 { margin: 0 0 var(--space-4); font-size: var(--type-size-h3); line-height: var(--type-line-height-heading); }
+  .product-perspective > p { max-inline-size: var(--layout-measure); }
+}
+
+@layer world {
+  // The command surface uses this world's anodised register; reading remains on stock.
+  .shell__dialog { @include optical.command-register; }
+  .control--secondary { --control-secondary-border: var(--color-line); }
+  .shell__tenant input[type='search'] { background: transparent; }
+}
+
+@layer world {
+  $plate-edge: inset 0 0 0 var(--world-geometry-plate-edge-size) var(--color-line);
+  .shell__dialog { @include optical.frame($depth: $plate-edge); }
+  // The search picker floats like the shell, so it takes the same plate edge on the page's own register.
+  @supports (appearance: base-select) { .search-page select::picker(select) { @include optical.frame($depth: $plate-edge, $radius: var(--radius-preview-frame)); } }
+}
+
+// Static product relationships preserve inputs, responsibilities and common terms.
+@layer world {
+  .product-handoff,.product-use { inline-size: 100%; min-inline-size: 0; box-sizing: border-box; }
+  .product-handoff {
+    display: grid; grid-template-columns: repeat(3,minmax(0,1fr));
+    align-items: center; gap: var(--space-6);
+  }
+  .product-handoff__inputs { display: grid; gap: var(--space-6); padding-inline-end: var(--space-5); border-inline-end: var(--stroke-hair) solid var(--color-line); }
+  .product-handoff__review,.product-handoff__continuation { position: relative; min-inline-size: 0; }
+  .product-handoff__review { padding: var(--space-5); background: var(--color-sheet); @include optical.frame; }
+  .product-handoff__review::before,.product-handoff__continuation::before {
+    content: ''; position: absolute; inset-inline-start: calc(var(--space-6) * -1); inset-block-start: 50%;
+    inline-size: var(--space-6); border-block-start: var(--stroke-hair) solid var(--color-line); pointer-events: none;
+  }
+  .product-handoff__common { grid-column: 1 / -1; }
+  .product-handoff :is(h3,p),.product-use :is(h3,p) { margin: 0; }
+  .product-handoff h3 + p,.product-use h3 + p { margin-block-start: var(--space-4); }
+  .product-handoff__common,.product-use__common { max-inline-size: var(--layout-reading-measure); margin-inline: auto; }
+  .product-handoff__common > p,.product-use__common > p { max-inline-size: var(--layout-reading-measure); }
+  @media (width >= layout.$layout-breakpoint-navigation) {
+    .product-handoff__common,.product-use__common { text-align: center; }
+  }
+
+  .product-use { display: grid; gap: var(--space-6); }
+  .product-use__parties { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: var(--space-6); }
+  .product-use__parties > section { min-inline-size: 0; padding-inline: var(--space-5); border-inline-start: var(--stroke-hair) solid var(--color-line); }
+  .product-use__conditions,.product-use__record {
+    display: grid; grid-template-columns: minmax(0,1fr) minmax(0,2fr); align-items: baseline;
+    gap: var(--space-4) var(--space-6); padding: var(--space-5); background: var(--color-sheet);
+  }
+  .product-use__conditions,.product-use__record { @include optical.frame; }
+  .product-use__record { background: var(--color-tint); }
+  .product-use__conditions h3 + p,.product-use__record h3 + p { margin: 0; }
+  @media (width < layout.$layout-breakpoint-navigation) {
+    .product-handoff,.product-use__parties,.product-use__conditions,.product-use__record { grid-template-columns: minmax(0,1fr); }
+    .product-handoff { gap: var(--space-5); }
+    .product-handoff__inputs { padding-inline-end: 0; border-inline-end: 0; }
+    @media screen {
+      .product-handoff__inputs {
+        position: relative; padding-inline-start: var(--space-5); padding-block-end: var(--space-5);
+        border-inline-start: var(--stroke-hair) solid var(--color-line);
+      }
+      .product-handoff__inputs > section { position: relative; }
+      .product-handoff__inputs > section::before {
+        content: ''; position: absolute; inset-inline-start: calc(var(--space-5) * -1); inset-block-start: 50%;
+        inline-size: var(--space-4); border-block-start: var(--stroke-hair) solid var(--color-line); pointer-events: none;
+      }
+      .product-handoff__inputs::after {
+        content: ''; position: absolute; inset-inline-start: 0; inset-block-end: 0;
+        inline-size: 50%; border-block-start: var(--stroke-hair) solid var(--color-line); pointer-events: none;
+      }
+      .product-handoff__review::before,.product-handoff__continuation::before {
+        display: block; inset-inline-start: 50%; inset-block-start: calc(var(--space-5) * -1);
+        inline-size: 0; block-size: var(--space-5); border-block-start: 0;
+        border-inline-start: var(--stroke-hair) solid var(--color-line);
+      }
+    }
+    .product-handoff__common { grid-column: auto; }
+    .product-use__parties > section { padding-inline-start: var(--space-4); padding-inline-end: 0; }
+  }
+  @media print {
+    .product-handoff,.product-use,.product-use__parties,.product-use__conditions,.product-use__record { display: block; }
+    .product-handoff__review::before,.product-handoff__continuation::before { display: none; }
+    .product-handoff > * + *,.product-use > * + *,.product-use__parties > section + section,.product-use__conditions h3 + p,.product-use__record h3 + p { margin-block-start: var(--space-4); }
+  }
+}
+
+// The opening film borrows this world's material; all playback and layout stay in Base.
+@layer world {
+  .ambient-hero { background: transparent; }
+  .ambient-content {
+    background: linear-gradient(0deg,var(--color-paper),color-mix(in srgb,var(--color-paper) calc(var(--material-film-scrim) * 100%),transparent) calc(var(--material-film-scrim-mid-stop) * 100%),transparent calc(var(--material-film-scrim-clear-stop) * 100%));
+  }
+  .ambient-content > .page-opening { text-shadow: none; }
+  @media (width < layout.$layout-breakpoint-wide) {
+    .ambient-content { background: var(--color-paper); }
+    .ambient-hero::after { content: ''; position: absolute; inset: 0 0 auto; block-size: var(--ambient-media-height); background: linear-gradient(transparent calc(100% - var(--space-6)),var(--color-paper)); pointer-events: none; }
+  }
+  @media print {
+    .ambient-hero::after { display: none; }
+    .ambient-content { background: none; }
+  }
+}

@@ -1,0 +1,45 @@
+format: gazette-landing/v1
+content:
+  id: page:product-relations
+  site: site:reading
+  title: Contributions joined by their responsibilities
+  lifecycle: draft
+  language: en
+  route: {path: /product-relations/}
+  structure: {kind: page, family: {kind: project}}
+sections:
+- component: page-opening
+  heading: {level: 1, text: Contributions joined by their responsibilities}
+  arguments: {layout: stacked}
+  body: |
+    Neutral static specimens describe proposed relationships, not completed operations.
+- component: project-explanation
+  heading: {level: 2, text: Reports converge on review}
+  sections:
+  - component: product-handoff
+    arguments:
+      inputs:
+      - {title: A sensor report, body: The instrument supplies an observation to examine.}
+      - {title: A deliberate report, body: A person supplies the condition they encountered.}
+      review: {title: Maintenance review, body: Examine both kinds of information and retain uncertainty.}
+      continuation: {title: Accept the repair work, body: Carry the relevant context to the person accepting the assignment.}
+    body: |
+      Receiving a report and accepting work remain separate responsibilities.
+- component: project-explanation
+  heading: {level: 2, text: A method enters another laboratory}
+  sections:
+  - component: product-use
+    arguments:
+      contribution: {title: A calibration method, body: Describe the method and its version.}
+      application: {title: The receiving laboratory, body: Choose the operation and permitted records.}
+      conditions: {title: Conditions <and> context, body: Keep the participants and terms of this use explicit.}
+      record: {title: A shared account, body: Identify the selected version and the attempted operation.}
+    body: |
+      A shared account supplies something to inspect; it does not certify the interpretation.
+- component: project-explanation
+  heading: {level: 2, text: The earlier perspective remains available}
+  sections:
+  - component: product-perspective
+    heading: {level: 3, text: An ordinary contribution}
+    body: |
+      The original optional perspective remains unchanged.

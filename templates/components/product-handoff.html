@@ -1,0 +1,6 @@
+<section class="product-handoff">
+  <div class="product-handoff__inputs">{% for input in component.arguments.inputs %}<section><h3>{{ input.title }}</h3><p>{{ input.body }}</p></section>{% endfor %}</div>
+  <section class="product-handoff__review"><h3>{{ component.arguments.review.title }}</h3><p>{{ component.arguments.review.body }}</p></section>
+  <section class="product-handoff__continuation"><h3>{{ component.arguments.continuation.title }}</h3><p>{{ component.arguments.continuation.body }}</p></section>
+  <div class="product-handoff__common">{{ component.body.html | safe }}</div>
+</section>

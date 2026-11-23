@@ -1,0 +1,109 @@
+package = "theme:chassis"
+namespace = "chassis"
+templates = "templates"
+render = { page = "page.html", alias = "alias.html", graph = "graph.html", not_found = "not-found.html", social_card = { template = "social-card.html", resource_requirements = ["stylesheet:social-card", "module:social-card-media"], width = 1200, height = 630, media_selector = '.ambient-still img', media_kind = "image" } }
+browser_theme_colors = { light = "#e9eee9", dark = "#0f1813" }
+resource_requirements = ["stylesheet:ambient-hero", "stylesheet:world-tokens", "font:reading", "font:reading-italic", "font:system", "font:display", "stylesheet:world"]
+
+[[dependencies]]
+package = "theme:base"
+
+[[resources]]
+id = "stylesheet:world-tokens"
+inputs = ["tokens/world.css"]
+build = { kind = "stylesheet", entry = "tokens/world.css" }
+
+[[resources]]
+id = "stylesheet:world"
+inputs = ["styles/world.scss", "shared/_typography.scss", "shared/_navigation.scss", "shared/_optical.scss", "tokens/scss/_layout.scss"]
+build = { kind = "stylesheet", entry = "styles/world.scss" }
+
+[[resources]]
+id = "font:reading-italic"
+inputs = ["instrument-sans-italic-latin.woff2"]
+build = { kind = "woff2-font", entry = "instrument-sans-italic-latin.woff2" }
+
+[[resources]]
+id = "font:reading"
+inputs = ["instrument-sans-latin.woff2"]
+build = { kind = "woff2-font", entry = "instrument-sans-latin.woff2" }
+
+[[resources]]
+id = "font:display"
+inputs = ["saira-latin.woff2"]
+build = { kind = "woff2-font", entry = "saira-latin.woff2" }
+
+
+
+[components.availability]
+template = "components/availability.html"
+arguments = { type = "object", additionalProperties = false }
+
+[components.closing-question]
+template = "components/closing-question.html"
+arguments = { type = "object", additionalProperties = false }
+
+[components.product-opening]
+template = "components/product-opening.html"
+arguments = { type = "object", additionalProperties = false }
+
+[components.product-reading]
+template = "components/product-reading.html"
+arguments = { type = "object", additionalProperties = false }
+
+[components.product-directory]
+template = "components/product-directory.html"
+arguments = { type = "object", additionalProperties = false }
+
+[components.product-entry]
+template = "components/product-entry.html"
+arguments = { type = "object", additionalProperties = false }
+
+[components.dependency-study]
+template = "components/dependency-study.html"
+arguments = { type = "object", additionalProperties = false }
+
+[components.study-conclusion]
+template = "components/study-conclusion.html"
+arguments = { type = "object", additionalProperties = false }
+
+[components.study-step]
+template = "components/study-step.html"
+arguments = { type = "object", additionalProperties = false }
+
+[components.composition-model]
+template = "components/composition-model.html"
+arguments = { type = "object", additionalProperties = false }
+
+[components.composition-level]
+template = "components/composition-level.html"
+arguments = { type = "object", additionalProperties = false, required = ["unit"], properties = { unit = { type = "string", enum = ["application", "playbook", "agent"], description = "Identify this part of the composition as an application, playbook or agent." } } }
+
+[components.composition-context]
+template = "components/composition-context.html"
+arguments = { type = "object", additionalProperties = false }
+
+[components.study-contribution]
+template = "components/study-contribution.html"
+arguments = { type = "object", additionalProperties = false, required = ["relation"], properties = { relation = { type = "string", enum = ["steady", "new", "pending", "dependent", "outside"], description = "Describe the contribution as steady, new, pending, dependent or outside the study." } } }
+
+[[resources]]
+id = "font:system"
+inputs = ["martian-mono-latin.woff2"]
+build = { kind = "woff2-font", entry = "martian-mono-latin.woff2" }
+
+[components.product-perspective]
+template = "components/product-perspective.html"
+arguments = { type = "object", additionalProperties = false }
+
+[components.product-handoff]
+template = "components/product-handoff.html"
+arguments = { type = "object", required = ["inputs", "review", "continuation"], additionalProperties = false, properties = { inputs = { type = "array", minItems = 1, maxItems = 3, items = { type = "object", required = ["title", "body"], additionalProperties = false, properties = { title = { type = "string", minLength = 1, description = "Heading naming this input." }, body = { type = "string", minLength = 1, description = "Plain text explanation beneath this heading." } } }, description = "One to three contributions that meet at the shared review." }, review = { type = "object", required = ["title", "body"], additionalProperties = false, properties = { title = { type = "string", minLength = 1, description = "Heading naming this review." }, body = { type = "string", minLength = 1, description = "Plain text explanation beneath this heading." } }, description = "The shared review that receives the contributions." }, continuation = { type = "object", required = ["title", "body"], additionalProperties = false, properties = { title = { type = "string", minLength = 1, description = "Heading naming this continuation." }, body = { type = "string", minLength = 1, description = "Plain text explanation beneath this heading." } }, description = "The distinct responsibility that continues after review." } } }
+
+[components.product-use]
+template = "components/product-use.html"
+arguments = { type = "object", required = ["contribution", "application", "conditions", "record"], additionalProperties = false, properties = { contribution = { type = "object", required = ["title", "body"], additionalProperties = false, properties = { title = { type = "string", minLength = 1, description = "Heading naming this contribution." }, body = { type = "string", minLength = 1, description = "Plain text explanation beneath this heading." } }, description = "The capability or work being contributed." }, application = { type = "object", required = ["title", "body"], additionalProperties = false, properties = { title = { type = "string", minLength = 1, description = "Heading naming this application." }, body = { type = "string", minLength = 1, description = "Plain text explanation beneath this heading." } }, description = "The application receiving the contribution." }, conditions = { type = "object", required = ["title", "body"], additionalProperties = false, properties = { title = { type = "string", minLength = 1, description = "Heading naming these conditions." }, body = { type = "string", minLength = 1, description = "Plain text explanation beneath this heading." } }, description = "Conditions applying to this use." }, record = { type = "object", required = ["title", "body"], additionalProperties = false, properties = { title = { type = "string", minLength = 1, description = "Heading naming this record." }, body = { type = "string", minLength = 1, description = "Plain text explanation beneath this heading." } }, description = "The record kept of this use." } } }
+
+[chrome.regions]
+"base:theme-credit" = "Chassis theme"
+"base:theme-repository" = "https://github.com/getHarshOnline/gazette-theme-chassis"
